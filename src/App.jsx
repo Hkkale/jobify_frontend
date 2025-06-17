@@ -8,6 +8,8 @@ import { BrowserRouter, Route,Routes } from "react-router";
 import FindJob from "./Pages/FindJob";
 import Header from "./Header/Header";
 import Footer from "./Footer/Footer";
+import FindTalentPage from "./Pages/FindTalentPage";
+import TalentProfilePage from "./Pages/TalentProfilePage";
 
 function App() {
   const theme = createTheme({
@@ -51,6 +53,8 @@ function App() {
         <Header/>
         <Routes>
           <Route path="/find-jobs" element={<FindJob />} />
+          <Route path="/find-talent" element={<FindTalentPage />} />
+          <Route path="/talent-profile" element={<TalentProfilePage />} />
           
 
           <Route path="*" element={<HomePage />} />
