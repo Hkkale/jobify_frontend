@@ -11,7 +11,9 @@ const Navlinks = () => {
     {name:"Find job",url:"/find-jobs"},
     {name:"Find Talent",url:"/find-talent"},
     {name:"Post Job",url:"/post-job"},
-    {name:"About us",url:"/about"},
+    {name:"Posted Job",url:"/posted-job"},
+    {name:"Job History",url:"/job-history"},
+    {name:"Sign Up",url:"/signup"},
     
   ]
 
