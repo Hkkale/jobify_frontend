@@ -2,7 +2,7 @@ import { ActionIcon, Button, Divider } from "@mantine/core";
 import React, { useEffect, useState } from "react";
 import { FaRegBookmark,FaBookmark } from "react-icons/fa6";
 import { MdOutlineLocationOn } from "react-icons/md";
-import { HiOutlineLocationMarker, HiSearch } from "react-icons/hi";
+
 import { HiOutlineBriefcase } from "react-icons/hi";
 import { RiMoneyRupeeCircleLine } from "react-icons/ri";
 import { BiBoltCircle } from "react-icons/bi";
@@ -11,6 +11,8 @@ import { useNavigate } from "react-router";
 import { timeAgo } from "../../Services/Utilities";
 import { useDispatch, useSelector } from "react-redux";
 import { changeProfile } from "../../Slices/ProfileSlice";
+import {postJob} from "../../Services/JobService"
+import {errorNotifiaction, successNotification} from "../../Services/NotificationService"
 const JobDesc = (props) => {
   const profile=useSelector((state)=>state.profile);
   const user=useSelector((state)=>state.user);
@@ -37,6 +39,20 @@ const JobDesc = (props) => {
   console.log(props.applicants)
   console.log(user.id)
   console.log(props)
+
+  const handleClose=()=>{
+
+    postJob({...props,jobStatus:"CLOSED"})
+    .then((res)=>{
+      successNotification("Success","Job Closed Successfully")
+
+    })
+    .close((err)=>{
+      console.log(err)
+      errorNotifiaction("Error",err.response.data.errorMessage)
+    })
+    
+  }
   
   useEffect(()=>{
    if(props.applicants?.filter((applicant)=>applicant.applicantId===user.id).length>0){
@@ -58,17 +74,7 @@ const JobDesc = (props) => {
 
   const data = DOMPurify.sanitize(props.description);
 
-  const skills = [
-    "React",
-    "Spring Boot",
-    "Java",
-    "Python",
-    "Node.js",
-    "MongoDB",
-    "Express",
-    "Django",
-    "PostgreSQL",
-  ];
+  
 
   const navigate= useNavigate();
   return (
@@ -99,14 +105,14 @@ const JobDesc = (props) => {
         </div>
         <div className="flex flex-col gap-2 items-center justify-center">
          { (props.edit || !applied) &&<Button
-            onClick={() => navigate(`/apply-job/${props.id}`)}
-            size="sm"
+            onClick={() => navigate(props.edit ? `/post-job/${props.id}` :`/apply-job/${props.id}`)}
+            size="md"
             color="brightSun.4"
             variant="light"
           >
-            {props.edit ? "Edit" : "Apply"}
+            {props.closed?"Reopen": props.edit ? "Edit" : "Apply"}
           </Button>}
-          { applied &&
+          {!props.edit && applied &&
              <Button
             
             size="sm"
@@ -116,13 +122,17 @@ const JobDesc = (props) => {
             Applied
           </Button>
           }
-          {props.edit ? <Button
-            onClick={() => navigate("/apply-job")}
+
+
+
+
+          {props.edit && !props.closed ? <Button
+            onClick={() => handleClose()}
             size="sm"
             color="red.5"
             variant="outline"
           >
-            Delete
+            Close
           </Button>:profile.savedJobs?.includes(props.id) ?<FaBookmark onClick={()=>handleSaveJob()} className=' cursor-pointer text-bright-sun-400'/>:<FaRegBookmark onClick={()=>handleSaveJob()} className='text-mine-shaft-300 cursor-pointer hover:text-bright-sun-400'/>}
         </div>
       </div>

@@ -46,6 +46,44 @@ const getBase64 = (file)=>{
 
     })
 
+}
+
+
+
+
+const formatInterviewTime=(date)=>{
+  
+const dt = new Date(date);
+
+return dt.toLocaleString("en-US", {
+  year: "numeric",
+  month: "long",   // August
+  day: "numeric",  // 15
+  hour: "numeric",
+  minute: "2-digit",
+  hour12: true     // AM/PM format
+});
+
+
+}
+
+
+const openBase64PDF=(base64string)=>{
+
+  const bytechar=atob(base64string);
+
+  const byteNum = new Array(bytechar.length);
+  for (let i = 0; i < bytechar.length; i++) {
+    byteNum[i] = bytechar.charCodeAt(i);
   }
 
-export {formatDate,timeAgo,getBase64}
+  const byteArray = new Uint8Array(byteNum);
+  const file = new Blob([byteArray], { type: 'application/pdf' });
+  const fileURL = URL.createObjectURL(file);
+  window.open(fileURL,'_blank');
+
+
+
+}
+
+export {formatDate,timeAgo,getBase64,formatInterviewTime,openBase64PDF}

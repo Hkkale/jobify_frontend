@@ -1,16 +1,25 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import SelectInput from './SelectInput'
 import { Button, NumberInput, TagsInput, Textarea } from '@mantine/core'
 
 import TextEditor from './TextEditor'
 import { isNotEmpty, useForm } from '@mantine/form'
 import { FaArrowLeftLong } from 'react-icons/fa6'
-import { postJob } from '../../Services/JobService'
+import { getJob, postJob } from '../../Services/JobService'
 import { errorNotifiaction, successNotification } from '../../Services/NotificationService'
-import {useNavigate}  from 'react-router'
+import {useNavigate, useParams}  from 'react-router'
+import {useSelector} from 'react-redux'
+import { useState } from 'react'
 
 
 const PostJob = () => {
+
+  const id=useParams().id;
+  const content =
+  '<h4>About The Job</h4><p>Write description here...</p><h4>Responsibilities</h4><ul><li>Add responsibilities here...</li></ul><h4>Qualifications and Skill Sets</h4><ul><li>Add required qualification and skill set here...</li></ul>';
+  const [editorData,setEditorData]=useState(content)
+  const user=useSelector((state)=>state.user)
+
 
   const select=[
     {label:"Job Title",placeholder:"Enter Job Title", options:['Designer', 'Developer', 'Product Manager', 'Marketing Specialist', 'Data Analyst', 'Sales Executive', 'Content Writer', 'Customer Support']},
@@ -21,10 +30,28 @@ const PostJob = () => {
     {label:"Salary",placeholder:"Enter Salary", options:['10 LPA', '15 LPA', '20 LPA', '25 LPA', '30 LPA', '35 LPA', '40 LPA', '45 LPA']}
 ]
 
+useEffect(()=>{
+  window.scrollTo(0, 0);
+  if(id!=="0"){
+    getJob(id)
+    .then((res)=>{
+      form.setValues(res)
+      setEditorData(res.description)
+
+    })
+    .catch((err)=>{
+      console.log(err)
+    })
+  }
+  else{
+    form.reset()
+    setEditorData(content)
+  }
+},[id])
+
 const navigate=useNavigate();
 
-const content =
-  '<h4>About The Job</h4><p>Write description here...</p><h4>Responsibilities</h4><ul><li>Add responsibilities here...</li></ul><h4>Qualifications and Skill Sets</h4><ul><li>Add required qualification and skill set here...</li></ul>';
+
 
   const form=useForm({
     mode:"controlled",
@@ -59,11 +86,11 @@ const content =
     if(!form.isValid()) return;
 
 
-    postJob(form.getValues())
+    postJob({...form.getValues(),id,postedBy:user.id,jobStatus:"ACTIVE"})
       .then((res)=>{
         console.log(res)
         successNotification("Success","Job posted successfully")
-        navigate("/posted-job")
+        navigate(`/posted-jobs/${res.id}`)
 
       })
       .catch((err)=>{
@@ -76,8 +103,30 @@ const content =
   }
 
 
+
+   const handleDraft=()=>{
+    
+
+    postJob({...form.getValues(),id,postedBy:user.id,jobStatus:"DRAFT"})
+      .then((res)=>{
+        console.log(res)
+        successNotification("Success","Job Drafted successfully")
+        navigate(`/posted-jobs/${res.id}`)
+
+      })
+      .catch((err)=>{
+        console.log(err)
+        errorNotifiaction("Error",err.response.data.message)
+      })
+
+
+
+  }
+
   return (
     <div className='w-4/5 mx-auto mt-10'>
+
+      
 
       <div className='text-2xl font-semibold mb-5 '>Post a Job</div>
 
@@ -113,14 +162,14 @@ const content =
         <div className='[&_button[data-active="true"]]:!text-bright-sun-400  [&_button[data-active="true"]]:!bg-bright-sun-400/20'>
 
           <div className='text-sm font-medium'> Job Description <span className='text-red-500 '>*</span></div>
-          <TextEditor form={form}/>
+          <TextEditor form={form} data={editorData}/>
 
         </div>
 
 
         <div className=' flex gap-4 mb-6'>
           <Button className=''  color='brightSun.4' onClick={()=>handlePost()} variant='light' > Publish Job </Button>
-          <Button className=''  color='brightSun.4' onClick={()=>navigate("/find-talent")} variant='outline' > Save as Draft </Button>
+          <Button className=''  color='brightSun.4' onClick={()=>handleDraft()} variant='outline' > Save as Draft </Button>
         </div>
 
 
