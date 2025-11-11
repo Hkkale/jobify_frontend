@@ -11,7 +11,7 @@ import { changeAppStatus } from "../../Services/JobService";
 import { errorNotifiaction, successNotification } from "../../Services/NotificationService";
 import { formatInterviewTime, openBase64PDF } from "../../Services/Utilities";
 
-const TalentCard = (props ) => {
+const TalentCard = (props) => {
   const id=useParams().id;
   const navigate = useNavigate();
   const [date, setDate] = useState(null)
@@ -21,6 +21,8 @@ const TalentCard = (props ) => {
   const [opened, { open, close }] = useDisclosure(false);
   const [apl, { open:openApl, close:closeApl }] = useDisclosure(false);
   const [profile, setProfile] = useState({})
+
+
  
 
   useEffect(()=>{
@@ -98,9 +100,11 @@ const TalentCard = (props ) => {
 };
 
 
+
+
   
-  return (
-    <div className="bg-mine-shaft-900 p-4 w-85 flex gap-3 flex-col rounded-xl hover:shadow-[0_0_5px_1px_yellow] !shadow-bright-sun-400 ">
+  return  (
+    <div className={!props.recTalent ?"bg-mine-shaft-900 p-4 max-[748px]:w-full max-[1112px]:w-[48%] max-[1476px]:w-[31%] w-85 flex gap-3 flex-col rounded-xl hover:shadow-[0_0_5px_1px_yellow] !shadow-bright-sun-400 ":"bg-mine-shaft-900 p-4 min-[1170px]:w-full w-85 flex gap-3 flex-col rounded-xl max-[748px]:w-full max-[1097px]:w-[47%] hover:shadow-[0_0_5px_1px_yellow] !shadow-bright-sun-400  "}>
       <div className="flex justify-between">
         <div className="flex gap-2 items-center">
           <div className="p-2 bg-mine-shaft-800 rounded-full">
@@ -116,7 +120,7 @@ const TalentCard = (props ) => {
         <FaRegHeart className="text-mine-shaft-300 cursor-pointer" />
       </div>
 
-      <div className="flex gap-2 [&>div]:py-1 [&>div]:px-2 [&>div]:bg-mine-shaft-800 [&>div]:text-bright-sun-400 [&>div]:rounded-lg [&>div]:text-xs">
+      <div className="flex gap-2 [&>div]:py-1 [&>div]:px-2 [&>div]:bg-mine-shaft-800 [&>div]:text-bright-sun-400 [&>div]:rounded-lg [&>div]:text-xs flex-wrap">
         {profile?.skills?.map((skill, index) => index < 4 && (
           <div key={index}>{skill}</div>
         ))}
@@ -177,9 +181,9 @@ const TalentCard = (props ) => {
             Scedule
           </Button>
         ) : (
-          <Button  color="brightSun.4" variant="light" fullWidth>
+          <Button href={`mailto:${profile?.email}`}            color="brightSun.4" component="a" variant="light" fullWidth>
             
-            Message
+            Message 
           </Button>
         )}
         </>

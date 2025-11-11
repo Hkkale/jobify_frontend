@@ -9,7 +9,7 @@ import React, { useState } from "react";
 import { MdOutlineMailOutline } from "react-icons/md";
 import { RiLockPasswordLine } from "react-icons/ri";
 import { useNavigate } from "react-router";
-import { loginUser } from "../../Services/UserService";
+
 import { loginValidation } from "../../Services/FormValidation";
 import { notifications } from "@mantine/notifications";
 import { FaCheck, FaX } from "react-icons/fa6";
@@ -22,6 +22,9 @@ import {
 } from "../../Services/NotificationService";
 
 import { setUser } from "../../Slices/UserSlice";
+import { setJwt } from "../../Slices/JwtSlice";
+import { loginUser } from "../../Services/AuthService";
+import {jwtDecode} from "jwt-decode";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -66,14 +69,21 @@ const Login = () => {
 
           setTimeout(() => {
             setLoading(false);
-            dispatch(setUser(res));
+            // dispatch(setUser(res));
+             dispatch(setJwt(res.jwt));
+             const decoded=jwtDecode(res.jwt);
+             console.log(decoded);
+             dispatch(setUser({...decoded,email:decoded.sub}));
+
             navigate("/");
           }, 4000);
         })
         .catch((err) => {
           setLoading(false);
           console.log(err.response.data);
-          errorNotifiaction("Login Failed!", err.response.data.errorMessage);
+          errorNotifiaction("Login Failed!", 
+            "Bad Credentials. Please try again."
+          );
         });
     }
   };

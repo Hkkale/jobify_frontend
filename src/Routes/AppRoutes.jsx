@@ -16,6 +16,10 @@ import SignUpPage from "../Pages/SignUpPage";
 import ProfilePage from "../Pages/ProfilePage";
 import { Divider } from "@mantine/core";
 import { useSelector } from "react-redux";
+import ProtectedRoute from "../Services/ProtectedRoute";
+import PublicRoute from "../Services/PublicRoute";
+import TradeMark from "../Components/TradeMark/TradeMark";
+import ErrorPage from "../Pages/ErrorPage";
 
 const AppRoutes = () => {
   const user = useSelector((state) => state.user);
@@ -25,31 +29,31 @@ const AppRoutes = () => {
         <Header />
         <Divider mx="md" size="xs" orientation="horizontal" />
         <Routes>
-          <Route path="/find-jobs" element={<FindJob />} />
-          <Route path="/find-talent" element={<FindTalentPage />} />
+          <Route path="/find-jobs" element={<ProtectedRoute allowedRoles={["APPLICANT"]}> <FindJob /></ProtectedRoute>} />
+          <Route path="/find-talent" element={<ProtectedRoute allowedRoles={["EMPLOYER","APPLICANT"]}> <FindTalentPage /></ProtectedRoute>} />
           <Route path="/talent-profile/:id" element={<TalentProfilePage />} />
           <Route path="/jobs/:id" element={<JobDescPage />} />
-
-          <Route path="/post-job/:id" element={<PostJobPage />} />
-          <Route path="/posted-jobs/:id" element={<PostedJobPage />} />
+          <Route path="/post-job/:id" element={<ProtectedRoute allowedRoles={["EMPLOYER","APPLICANT"]}> <PostJobPage /></ProtectedRoute>} />
+          <Route path="/posted-jobs/:id" element={<ProtectedRoute allowedRoles={["EMPLOYER","APPLICANT"]}> <PostedJobPage /></ProtectedRoute>} />
           <Route path="/apply-job/:id" element={<ApplyJobPage />} />
           <Route path="/company/:id" element={<CompanyPage />} />
-          <Route path="/job-history" element={<JobHistoryPage />} />
+          <Route path="/job-history" element={<ProtectedRoute allowedRoles={["APPLICANT","APPLICANT"]}> <JobHistoryPage /></ProtectedRoute>} />
           <Route
             path="/signup"
-            element={user ? <Navigate to="/" /> : <SignUpPage />}
+            element={<PublicRoute><SignUpPage /></PublicRoute>}
           />
           <Route
             path="/login"
-            element={user ? <Navigate to="/" /> : <SignUpPage />}
+            element={<PublicRoute><SignUpPage /></PublicRoute>}
           />
-          <Route path="/profile" element={<ProfilePage />} />
+          <Route path="/profile" element={<ProtectedRoute allowedRoles={["APPLICANT"]}> <ProfilePage /></ProtectedRoute>} />
 
           <Route path="/" element={<HomePage />} />
-          {/* <Route path="/*" element={<HomePage />} /> */}
+          <Route path="/*" element={<ErrorPage />} />
         </Routes>
         <Divider mx="md" size="xs" className="" />
         <Footer />
+        <TradeMark/>
       </div>
     </BrowserRouter>
   );

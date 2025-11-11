@@ -1,10 +1,21 @@
 import React from 'react';
 import { useLocation, useNavigate } from 'react-router';
+import { useSelector } from 'react-redux';
 
 const Navlinks = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const path = location.pathname;
+  let path = location.pathname;
+
+  if(path.startsWith("/post-job/")){
+    path="/post-job/0"
+
+  }
+  else if(path.startsWith("/posted-jobs/")){
+    path="/posted-jobs/0"
+  }
+
+  const user= useSelector((state)=>state.user)
 
 
   const links= [
@@ -13,16 +24,20 @@ const Navlinks = () => {
     {name:"Post Job",url:"/post-job/0"},
     {name:"Posted Job",url:"/posted-jobs/0"},
     {name:"Job History",url:"/job-history"},
-    {name:"Sign Up",url:"/signup"},
+    
     
   ]
+
+  if(!user){
+    links.push({name:"Sign Up",url:"/signup"})
+  }
 
   const isActive = (pathName) => {
     return path === pathName ? "text-bright-sun-400 border-t-2" : "text-mine-shaft-300";
   };
 
   return (
-    <div className='flex gap-5 items-center  h-full '>
+    <div className="max-[900px]:hidden! flex gap-4.5 items-center h-full">
       
       {
         links.map((link,index)=><h2 key={index}

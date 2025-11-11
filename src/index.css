@@ -26,11 +26,28 @@
 --color-bright-sun-950: #461902;
 
 
+--breakpoint-xsm: 350px;
+--breakpoint-xs: 476px;
+--breakpoint-sm: 640px;
+--breakpoint-md: 768px;
+--breakpoint-bs: 900px;
+--breakpoint-lg: 1024px;
+--breakpoint-xl: 1280px;
+--breakpoint-2xl: 1536px;
+
+/* 👇 Define MAX breakpoints properly (Tailwind v4 format) */
+--breakpoint-xsm-mx: { max: 349px };
+--breakpoint-xs-mx: { max: 475px };
+--breakpoint-sm-mx: { max: 639px };
+--breakpoint-md-mx: { max: 767px };
+--breakpoint-bs-mx: { max: 899px };
+--breakpoint-lg-mx: { max: 1023px };
+--breakpoint-xl-mx: { max: 1279px };
+--breakpoint-2xl-mx: { max: 1535px };
+
 
 
 }
-
-
 
 /* Width and height */
 ::-webkit-scrollbar {

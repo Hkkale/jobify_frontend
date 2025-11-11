@@ -25,17 +25,21 @@ const ProfileMenu = () => {
 
   const handleLogout = () => {
     console.log("user Logged out");
-
     dispatch(removeUser());
+    window.location.href = "/";
+
+    
   };
 
   return (
     <Menu shadow="md" width={200} opened={opened} onChange={setOpened}>
       <Menu.Target>
         <div className="flex items-center gap-2 cursor-pointer">
-          <div>{user.name.split(" ")[0]}</div>
+          <div className="max-[476px]:hidden">{user?user.name.split(" ")[0]:""}</div>
           <Avatar
-            src={profile.picture ? `data:image/jpeg;base64,${profile.picture}`:"./src/assets/avatar-9.png"}
+            src={profile && profile.picture 
+  ? `data:image/jpeg;base64,${profile.picture}` 
+  : "./src/assets/avatar-9.png"}
             className="border-2 border-mine-shaft-600 rounded-full"
             alt="it's me"
             radius="xl"

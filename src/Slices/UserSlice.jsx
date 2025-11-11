@@ -6,17 +6,20 @@ import { getItem, removeItem, setItem } from '../Services/LocalStorageService'
 const UserSlice = createSlice({
 
   name:"user",
-  initialState:getItem("user"),
+  initialState:null,
   reducers:{
     setUser:(state, action)=>{
-      setItem("user",action.payload);
-      state=getItem("user");
-      return state;
+    setItem("user", action.payload);
+    return action.payload;
     },
 
     removeUser:(state)=>{
 
+      
+      removeItem("token");
       removeItem("user");
+      
+      
       state=null;
       return state;
 
