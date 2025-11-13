@@ -44,7 +44,7 @@ const verifyOtp = async (email,otp)=>{
 
 const ChangePassword = async (email,password)=>{
 
-  return axios.post(`/users/changePass`,{email,password})
+  return axiosInstance.post(`/users/changePass`,{email,password})
   .then(res=>res.data)
   .catch(error=>{throw error});
 

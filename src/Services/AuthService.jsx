@@ -1,5 +1,5 @@
 import axios from 'axios'
-const base_url="http://localhost:8080/auth"
+const base_url="https://jobify-backend-oga5.onrender.com/auth"
 
 const loginUser = async (login)=>{
 
