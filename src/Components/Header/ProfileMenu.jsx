@@ -8,6 +8,8 @@ import { FaRegFileAlt } from "react-icons/fa";
 import { FaRegMoon } from "react-icons/fa";
 import { MdSunny } from "react-icons/md";
 
+import temp_profile_img from "../../../public/avatar-9.png"
+
 import { BsFillMoonStarsFill } from "react-icons/bs";
 
 import { TbLogout2 } from "react-icons/tb";
@@ -39,7 +41,7 @@ const ProfileMenu = () => {
           <Avatar
             src={profile && profile.picture 
   ? `data:image/jpeg;base64,${profile.picture}` 
-  : "./src/assets/avatar-9.png"}
+  : temp_profile_img}
             className="border-2 border-mine-shaft-600 rounded-full"
             alt="it's me"
             radius="xl"

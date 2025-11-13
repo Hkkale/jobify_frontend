@@ -1,6 +1,7 @@
 import React from "react";
 import Marquee from "react-fast-marquee";
 
+
 const Companies = () => {
   const companies = ["Google", "Amazon", "Figma", "Netflix", "Meta", "Microsoft", "Pinterest", "Slack", "Spotify", "Oracle", "Walmart"];
   return (
@@ -14,7 +15,7 @@ const Companies = () => {
 
         {
           companies.map((company,index)=><div key={index} className="mx-15 max-[1003px]:mx-12 max-[800px]:mx-10 max-[491px]:mx-8  max-[343px]:mx-6 py-1 px-2  hover:bg-mine-shaft-900 rounded-xl cursor-pointer">
-            <img className="h-20  max-[1003px]:h-18 max-[800px]:h-15 max-[491px]:h-12 max-[343px]:h-10" src={`./src/assets/Companies/${company}.png`} alt={company} />
+            <img className="h-20  max-[1003px]:h-18 max-[800px]:h-15 max-[491px]:h-12 max-[343px]:h-10" src={`../../../public/Companies/${company}.png`} alt={company} />
           </div>)
 
         }

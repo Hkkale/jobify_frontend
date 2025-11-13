@@ -2,6 +2,12 @@ import React from "react";
 import { TextInput, Avatar } from "@mantine/core";
 import { IoSearch } from "react-icons/io5";
 
+import boy_img from "../../../public/Boy.png"
+import google_img from "../../../public/Google.png"
+import avatar1_img from "../../../public/avatar-7.png"
+import avatar2_img from "../../../public/avatar-8.png"
+import avatar3_img from "../../../public/avatar-9.png"
+
 const DreamJob = () => {
   return (
     <div className="flex max-[1100px]:px-10 max-[870px]:px-5 px-20 items-center max-[870px]:flex-col mt-8 max-[491px]:mt-0 ">
@@ -37,15 +43,15 @@ const DreamJob = () => {
 
       <div className="h-full w-[50%]  flex items-center justify-center max-[870px]:w-full max-[870px]:mt-10 ">
         <div className=" w-145 max-[420px]:w-80  relative">
-          <img src="./src/assets/Boy.png" alt="boy" className="" />
+          <img src={boy_img} alt="boy" className="" />
           <div className="w-fit border border-bright-sun-400 rounded-md p-2  backdrop-blur-md absolute top-[55%] -right-0 max-[420px]:top-[98%] max-[420px]:right-2 max-[355px]:hidden">
             <div className="text-center max-[1100px]:text-xs text-mine-shaft-100 text-sm ">
               10K+ got job
             </div>
             <Avatar.Group>
-              <Avatar  src="./src/assets/avatar-7.png" />
-              <Avatar src="./src/assets/avatar-8.png" />
-              <Avatar src="./src/assets/avatar-9.png" />
+              <Avatar  src={avatar1_img} />
+              <Avatar src={avatar2_img}/>
+              <Avatar src={avatar3_img} />
               <Avatar  >+9K</Avatar>
             </Avatar.Group>
           </div>
@@ -53,7 +59,7 @@ const DreamJob = () => {
           <div className="w-fit border border-bright-sun-400 rounded-md p-2 backdrop-blur-md absolute top-[32%] -left-0 max-[420px]:top-[98%] flex flex-col gap-3 max-[1100px]:gap-1.5 max-[355px]:hidden">
             <div className="flex gap-2  items-center">
               <div className="w-10 h-10 max-[1100px]:h-8 max-[1100px]:w-8 p-1 bg-mine-shaft-900 rounded-lg">
-                <img src="./src/assets/Google.png" alt="" />
+                <img src={google_img} alt="" />
               </div>
               <div className="text-sm max-[1100px]:text-xs text-mine-shaft-100">
                 <div>Software Engineer</div>

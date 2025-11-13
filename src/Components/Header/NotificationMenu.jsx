@@ -58,7 +58,7 @@ const NotificationMenu = () => {
       <Menu.Dropdown onChange={() => setOpened(true)}>
 
 
-      <div className="flex flex-col gap-0.5">
+      <div className="flex flex-col gap-0.5 border">
 
 
         {notifications.map((notf,index)=><Notification

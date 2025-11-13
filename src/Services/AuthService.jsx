@@ -1,9 +1,9 @@
-import axios from 'axios'
-const base_url="https://jobify-backend-oga5.onrender.com/auth"
+import axiosInstance from "../Interceptor/AxiosInterceptor";
+
 
 const loginUser = async (login)=>{
 
-  return axios.post(`${base_url}/login`,login)
+  return axiosInstance.post(`/auth/login`,login)
   .then(res=>res.data)
   .catch(error=>{throw error});
 
