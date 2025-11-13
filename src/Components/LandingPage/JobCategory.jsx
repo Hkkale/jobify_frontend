@@ -94,7 +94,7 @@ const JobCategory = () => {
                 <div className="p-2 bg-bright-sun-300 rounded-full">
                   <img
                     className="h-8 w-8"
-                    src={`./src/assets/Category/${category.name}.png`}
+                    src={`/Category/${category.name}.png`}
                     alt={category.name}
                   />
                 </div>

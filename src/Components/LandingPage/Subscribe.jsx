@@ -29,7 +29,7 @@ const Subscribe = () => {
         <span className="text-bright-sun-400">Job News ? </span>
       </div>
 
-      <div className='flex gap-4 bg-mine-shaft-700 px-3 py-2 max-[828px]:py-1 items-center max-[828px]:justify-between rounded-xl max-[828px]:w-4/5  max-[510px]:w-full'>
+      <div className='flex gap-4 bg-mine-shaft-700 px-3  py-2 max-[828px]:py-1 items-center max-[828px]:justify-between rounded-xl max-[828px]:w-4/5  max-[510px]:w-full'>
         <TextInput
         className='[&_input]:!text-mine-shaft-100 font-semibold max-[828px]:[&_input]:text-sm!   '
           variant="unstyled"          
@@ -38,7 +38,7 @@ const Subscribe = () => {
           value={value}
           onChange={(e)=>setValue(e.currentTarget.value)}
         />
-        <Button onClick={(e)=>handleSubscribe()} size={matches?"sm":"lg"} className='!rounded-lg'  color='brightSun.4' variant="filled">Subscribe</Button>
+        <Button onClick={(e)=>handleSubscribe()} size={matches?"xs":"lg"} className='!rounded-lg'  color='brightSun.4' variant="filled">Subscribe</Button>
       </div>
     </div>
   );

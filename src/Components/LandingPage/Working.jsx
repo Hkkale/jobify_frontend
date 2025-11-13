@@ -10,7 +10,7 @@ const work = [
 "desc": "Create a standout resume with your skills."
 },
 {
-"name": "Apply for Job",
+"name": 'Apply for Job',
 "desc": "Find and apply for jobs that match your skills."
 },
 {
@@ -34,11 +34,11 @@ const work = [
         <div className="relative  max-[810px]:mt-10">
           <img
             className="w-[40rem]"
-            src="./src/assets/Working/Girl.png"
+            src="/Working/Girl.png"
             alt="girl"
           />
           <div onClick={()=>navigate("/profile")} className="w-36 flex flex-col items-center gap-1 border border-bright-sun-400 rounded-xl py-3 px-1 backdrop-blur-md top-[24%] absolute right-10  max-[500px]:top-0 max-[500px]:right-0   max-[400px]:hidden cursor-pointer">
-            <Avatar className="h-16! w-16! max-[1000px]:h-12! max-[1000px]:w-12!" src="./src/assets/avatar-7.png"/>
+            <Avatar className="h-16! w-16! max-[1000px]:h-12! max-[1000px]:w-12!" src="/avatar-7.png"/>
             <div className="text-sm font-semibold text-mine-shaft-200 text-center max-[1000px]:text-xs">Complete your profile</div>
             <div className="text-xs text-bright-sun-400 ">70% Completed</div>
           </div>
@@ -46,9 +46,10 @@ const work = [
 
         <div className="flex flex-col max-[810px]:mt-10 gap-10 ">
           {
-            work.map((item,index)=><div key={index} className="flex items-center gap-4 max-[500px]:gap-2">
+            work.map((item,index)=><div key={index} className="flex items-center gap-4 max-[500px]:gap-2 ">
             <div className="p-2 max-[500px]:p-1 flex items-center justify-center h-18 w-18 max-[500px]:h-14 max-[500px]:w-14 bg-bright-sun-300 rounded-full shrink-0">
-              <img className="h-12 w-12 max-[500px]:h-10 max-[500px]:w-10" src={`./src/assets/Working/${item.name}.png`} alt={item.name} />
+              <img className="h-12 w-12 max-[500px]:h-10 max-[500px]:w-10" src={`public/Working/${item.name}.png`} alt={item.name} />
+              
             </div>
             <div>
               <div className="text-mine-shaft-200 text-xl font-semibold max-[1000px]:text-lg max-[500px]:text-base">{item.name}</div>

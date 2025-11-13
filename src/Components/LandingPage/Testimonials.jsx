@@ -7,22 +7,26 @@ const Testimonials = () => {
     {
         "name": "Shivam Patel",
         "testimonial": "This job portal made job search easy and quick. Recommended to all job seekers!",
-        "rating": 5
+        "rating": 5,
+        "img":"avatar-9"
     },
     {
-        "name": "Abhishek Kullu",
+        "name": "Meghna Pandey",
         "testimonial": "Found my dream job within a week! The application process was smooth.",
-        "rating": 5
+        "rating": 5,
+        "img":"avatar-8"
     },
     {
-        "name": "Swapnil Pandey",
+        "name": "Ritika Sharma",
         "testimonial": "I secured a job offer within days of applying. Exceptional user experience and support.",
-        "rating": 4
+        "rating": 4,
+        "img":"avatar-7"
     },
     {
-        "name": "Pavan Barnana",
+        "name": "Pavan Revatkar",
         "testimonial": "Highly efficient job portal with excellent resources. Helped me land a great position.",
-        "rating": 4
+        "rating": 4,
+        "img":"avatar-9"
     }
 ]
   return (
@@ -33,12 +37,12 @@ const Testimonials = () => {
 
 
 
-      <div className='flex justify-evenly max-[810px]:flex-wrap mt-10  gap-x-2 gap-y-5  '>
+      <div className='flex justify-evenly max-[810px]:flex-wrap mt-10  gap-x-2 gap-y-5 max-[500px]:mx-2  '>
 
 
       { testimonials.map((data,index)=><div key={index} className='flex flex-col gap-3  max-[400px]:gap-1  max-[810px]:w-[48%]  max-[400px]:w-full w-[23%] border border-bright-sun-400 p-3 rounded-xl '>
         <div className='flex gap-2 items-center '>
-          <Avatar className='!h-14 !w-14 ' src="./src/assets/avatar-9.png" />
+          <Avatar className='!h-14 !w-14 ' src={`/${data.img}.png`} />
         
           <div>
             <div className='text-lg text-mine-shaft-100 font-semibold'>{data.name}</div>
