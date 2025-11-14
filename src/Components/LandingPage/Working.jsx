@@ -7,15 +7,18 @@ const Working = () => {
 const work = [
 {
 "name": "Build Your Resume",
-"desc": "Create a standout resume with your skills."
+"desc": "Create a standout resume with your skills.",
+"img":"Build"
 },
 {
 "name": 'Apply for Job',
-"desc": "Find and apply for jobs that match your skills."
+"desc": "Find and apply for jobs that match your skills.",
+"img":"Apply"
 },
 {
 "name": "Get Hired",
-"desc": "Connect with employers and start your new job."
+"desc": "Connect with employers and start your new job.",
+"img":"Get"
 }
 ]
   return (
@@ -48,7 +51,7 @@ const work = [
           {
             work.map((item,index)=><div key={index} className="flex items-center gap-4 max-[500px]:gap-2 ">
             <div className="p-2 max-[500px]:p-1 flex items-center justify-center h-18 w-18 max-[500px]:h-14 max-[500px]:w-14 bg-bright-sun-300 rounded-full shrink-0">
-              <img className="h-12 w-12 max-[500px]:h-10 max-[500px]:w-10" src={`public/Working/${item.name}.png`} alt={item.name} />
+              <img className="h-12 w-12 max-[500px]:h-10 max-[500px]:w-10" src={`/Working/${item.img}.png`} alt={item.name} />
               
             </div>
             <div>
