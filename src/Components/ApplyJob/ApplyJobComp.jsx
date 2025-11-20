@@ -54,9 +54,9 @@ const ApplyJobComp = (props) => {
           <div className="p-3 bg-mine-shaft-800 rounded-xl shrink-0">
             <img
               className="h-14  max-[700px]:h-10"
-              src={`/src/assets/Icons/${props.company}.png`}
+              src={`/Icons/${props.company}.png`}
               onError={(e) =>
-                (e.currentTarget.src = "/src/assets/letter-j.png")
+                (e.currentTarget.src = "/letter-j.png")
               }
               
               alt="Company Logo"
