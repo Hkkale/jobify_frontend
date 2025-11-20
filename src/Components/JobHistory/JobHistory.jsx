@@ -62,9 +62,20 @@ const JobHistory = () => {
 
           <Tabs.Panel value={activeTab}>
             <div className="flex gap-5 flex-wrap justify-start w-full mt-10  ">
-              {showList.map((job, index) => (
+              {
+
+                showList.length === 0 ? (
+              <div className="text-center text-gray-500 text-lg mt-10">
+                No jobs found in this category.
+              </div>
+                )
+              :
+              showList.map((job, index) => (
                 <Card key={index} {...job} {...{[activeTab.toLowerCase()]:true}} />
-              ))}
+              ))
+
+
+              }
             </div>
           </Tabs.Panel>
         </Tabs>

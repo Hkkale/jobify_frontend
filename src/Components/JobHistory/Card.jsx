@@ -60,9 +60,9 @@ const Card = (props) => {
           <div className="p-2 bg-mine-shaft-800 rounded-md">
             <img
               className="h-7"
-              src={`./src/assets/Icons/${props.company}.png`}
+              src={`./Icons/${props.company}.png`}
               onError={(e) =>
-                (e.currentTarget.src = "/src/assets/letter-j.png")
+                (e.currentTarget.src = "/letter-j.png")
               }
               alt={props.company}
             />
