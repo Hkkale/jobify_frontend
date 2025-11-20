@@ -47,9 +47,9 @@ const JobsCard = (job) => {
           <div className="p-2 bg-mine-shaft-800 rounded-md flex-shrink-0">
             <img
               className="h-7 w-7 object-contain"
-              src={`/src/assets/Icons/${job.company}.png`}
+              src={`/Icons/${job.company}.png`}
               onError={(e) =>
-                (e.currentTarget.src = "/src/assets/letter-j.png")
+                (e.currentTarget.src = "/letter-j.png")
               }
               alt={`${job.company}`}
             />
