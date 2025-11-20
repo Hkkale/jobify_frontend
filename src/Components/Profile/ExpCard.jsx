@@ -32,8 +32,8 @@ const ExpCard = (props) => {
 
       <div className='flex justify-between max-[500px]:flex-wrap gap-2 '>
               <div className='flex gap-2 items-center '>
-                <div className='p-2 bg-mine-shaft-800 rounded-md shrink-0'><img className='h-7 max-[500px]:h-6' src={`./src/assets/Icons/${props.company}.png`}
-                onError={(e)=>e.target.src="/src/assets/letter-j.png"} 
+                <div className='p-2 bg-mine-shaft-800 rounded-md shrink-0'><img className='h-7 max-[500px]:h-6' src={`/Icons/${props.company}.png`}
+                onError={(e)=>e.target.src="/letter-j.png"} 
                 
                 alt="" /></div>
                 <div>

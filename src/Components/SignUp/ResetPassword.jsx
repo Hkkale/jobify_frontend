@@ -36,6 +36,8 @@ const ResetPassword = (props) => {
   }, 1000);
 
   const handleSendOtp = () => {
+    console.log("handle otp called")
+    
     setOtpSending(true);
     sendOtp(email)
       .then((res) => {
@@ -142,7 +144,7 @@ const ResetPassword = (props) => {
               autoContrast
               className="mr-1"
               disabled={email === "" || otpSent}
-              onClick={handleSendOtp}
+              onClick={()=>handleSendOtp()}
             >
               Send OTP
             </Button>

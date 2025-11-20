@@ -29,8 +29,8 @@ const CertifiCard = ({edit,index,...certi}) => {
         <div className="p-2 bg-mine-shaft-800 rounded-md">
           <img
             className="h-7 max-[500px]:h-6"
-            src={`./src/assets/Icons/${certi.issuer}.png`}
-            onError={(e)=>e.target.src="/src/assets/letter-j.png"} 
+            src={`/Icons/${certi.issuer}.png`}
+            onError={(e)=>e.target.src="/letter-j.png"} 
             alt=""
           />
         </div>

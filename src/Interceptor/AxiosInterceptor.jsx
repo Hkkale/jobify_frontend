@@ -4,6 +4,7 @@ import { navigateToLogin } from "../Services/AuthService";
 
 const axiosInstance=axios.create({
   baseURL: "https://jobify-backend-oga5.onrender.com",
+  // baseURL: "http://localhost:8080",
 });
 
 
