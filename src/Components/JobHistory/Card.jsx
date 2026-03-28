@@ -17,14 +17,18 @@ const Card = (props) => {
   const applicantId = profile.id;
 
   // find the applicant inside the job
-  const applicant = props.applicants.find(a => a.applicantId === applicantId);
-  console.log(applicant.interviewTime)
+  const applicant =
+  props.applicants?.find((a) => a.applicantId === applicantId) || null;
 
-  const { formattedDate, formattedTime } = formatInterviewDateTime2(applicant.interviewTime);
+// safe formatting
+let formattedDate = "";
+let formattedTime = "";
 
-  console.log(formattedDate); // "Thu, 27 November •"
-  console.log(formattedTime); // "08:00 AM"
-
+if (applicant?.interviewTime) {
+  const result = formatInterviewDateTime2(applicant.interviewTime);
+  formattedDate = result.formattedDate;
+  formattedTime = result.formattedTime;
+}
   
 
  
@@ -60,7 +64,7 @@ const Card = (props) => {
           <div className="p-2 bg-mine-shaft-800 rounded-md">
             <img
               className="h-7"
-              src={`./Icons/${props.company}.png`}
+              src={`/Icons/${props.company}.png`}
               onError={(e) =>
                 (e.currentTarget.src = "/letter-j.png")
               }

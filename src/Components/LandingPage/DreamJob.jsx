@@ -7,10 +7,19 @@ import google_img from "../../../public/Google.png"
 import avatar1_img from "../../../public/avatar-7.png"
 import avatar2_img from "../../../public/avatar-8.png"
 import avatar3_img from "../../../public/avatar-9.png"
+import { useNavigate } from "react-router";
+import { useSelector } from "react-redux";
 
 const DreamJob = () => {
+
+  
+
+  const navigate=useNavigate();
+
+  const user = useSelector((state) => state.user);
+
   return (
-    <div className="flex max-[1100px]:px-10 max-[870px]:px-5 px-20 items-center max-[870px]:flex-col mt-8 max-[491px]:mt-0 ">
+    <div className="flex  max-[1100px]:px-10 max-[870px]:px-5 px-20 items-center max-[870px]:flex-col mt-8 max-[491px]:mt-0 ">
       <div className="flex  flex-col items-left max-[1100px]:mt-20 justify-left max-[870px]:items-center  w-[50%] max-[870px]:w-full h-full">
         <div className="text-6xl max-[1003px]:text-5xl max-[1003px]:leading-16 font-bold max-[800px]:text-4xl max-[800px]:leading-14 max-[738px]:text-3xl max-[491px]:text-xl max-[343px]:text-lg pr-22  leading-18 max-[870px]:leading-normal text-mine-shaft-100 tracking-wide max-[870px]:pr-0 max-[313px]:text-center text-left max-[312px]:leading-snug">
           Find your <span className="text-bright-sun-400">dream job </span>with
@@ -36,7 +45,7 @@ const DreamJob = () => {
           />
 
           <div className="bg-bright-sun-400 w-20 max-[870px]:h-12 h-auto rounded-lg flex items-center justify-center min-w-14  max-[870px]:w-[15%] cursor-pointer hover:bg-bright-sun-500 shrink-0">
-            <IoSearch className="text-mine-shaft-100 text-6xl max-[1100px]:text-5xl max-[870px]:text-4xl" />
+            <IoSearch onClick={user?()=>navigate('/find-jobs'):()=>navigate('/login')} className="text-mine-shaft-100 text-6xl max-[1100px]:text-5xl max-[870px]:text-4xl" />
           </div>
         </div>
       </div>

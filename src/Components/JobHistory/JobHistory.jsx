@@ -65,7 +65,7 @@ const JobHistory = () => {
               {
 
                 showList.length === 0 ? (
-              <div className="text-center text-gray-500 text-lg mt-10">
+              <div className="text-center text-mine-shaft-300 text-2xl font-semibold  mt-10">
                 No jobs found in this category.
               </div>
                 )
